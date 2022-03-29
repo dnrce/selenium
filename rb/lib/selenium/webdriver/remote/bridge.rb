@@ -389,7 +389,7 @@ module Selenium
         end
 
         def print_page(options = {})
-          execute :print_page, {}, {options: options}
+          execute :print_page, {}, options
         end
 
         def click_element(element)

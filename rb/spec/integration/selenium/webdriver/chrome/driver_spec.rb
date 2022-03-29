@@ -67,9 +67,11 @@ module Selenium
           it 'should print with valid params' do
             create_driver!(capabilities: options) do |driver|
               driver.navigate.to url_for('printPage.html')
-              expect(driver.print_page(orientation: 'landscape',
+              page = driver.print_page(orientation: 'landscape',
                                        page_ranges: ['1-2'],
-                                       page: {width: 30})).to include(magic_number)
+                                       page: {width: 21.59, height: 27.94})
+              expect(page).to include(magic_number)
+              expect(Base64.decode64(page)).to include('/MediaBox [0 0 792 612]')
             end
           end
 
